@@ -21,9 +21,11 @@ export default function StoryIntro() {
           </div>
 
           {/* Hero Editorial Statement */}
-          <h2 className="font-editorial text-4xl sm:text-6xl md:text-7xl font-normal text-heading leading-tight max-w-4xl mx-auto mb-8">
-            “Good design is not just about how an interface looks. It’s about how <span className="italic sunflower-text-gradient">naturally</span> it feels to use.”
-          </h2>
+          <div className="max-w-4xl mx-auto mb-8 bg-white/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/20 shadow-sm">
+            <h2 className="font-editorial text-4xl sm:text-6xl md:text-7xl font-normal text-heading leading-tight">
+              “Good design is not just about how an interface looks. It’s about how <span className="italic sunflower-text-gradient">naturally</span> it feels to use.”
+            </h2>
+          </div>
 
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-muted font-body leading-relaxed mb-12">
             Irfan PC bridges user psychology, visual ergonomics, and frontend web code. Every interface decision is grounded in real human behavior, clean component systems, and purposeful interaction.

@@ -63,11 +63,11 @@ export default function PersistentBackground() {
   }, [useReducedMotion, videoError]);
 
   return (
-    <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none select-none">
+    <div className="fixed inset-0 w-screen h-screen z-0 overflow-hidden pointer-events-none select-none bg-[#fbf9f4]">
       {/* Cinematic Background Layer */}
       <div 
         ref={bgRef}
-        className="w-full h-full relative will-change-transform transform scale-100"
+        className="w-full h-full relative will-change-transform"
       >
         {!useReducedMotion && !videoError ? (
           <video
@@ -86,7 +86,7 @@ export default function PersistentBackground() {
           </video>
         ) : (
           <div 
-            className="w-full h-full bg-cover bg-center"
+            className="w-full h-full bg-cover bg-center md:bg-[center_bottom]"
             style={{
               backgroundImage: `url('/assets/hero-sunflower.jpg')`,
             }}

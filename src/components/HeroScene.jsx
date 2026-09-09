@@ -52,13 +52,8 @@ export default function HeroScene() {
       className="relative w-full min-h-screen z-10 flex flex-col justify-between items-center px-4 sm:px-8 pt-32 pb-12 overflow-hidden select-none"
     >
       
-      {/* Top Space Filler for Navbar clearance */}
-      <div className="w-full max-w-7xl flex justify-between items-center opacity-0 pointer-events-none">
-        <span>Spacer</span>
-      </div>
-
       {/* Hero Central Editorial Typography Container */}
-      <div className="relative z-10 max-w-6xl w-full mx-auto text-center flex flex-col items-center justify-center my-auto py-8">
+      <div className="relative z-10 max-w-6xl w-full mx-auto text-center flex flex-col items-center justify-center my-auto py-8 mt-12">
         
         {/* Subtle Editorial Pill */}
         <div className="mb-6 inline-flex items-center gap-2 glass-pill px-4 py-1.5 shadow-sm">
@@ -71,7 +66,7 @@ export default function HeroScene() {
         {/* Primary Name Heading: IRFAN PC */}
         <h1 
           ref={titleRef}
-          className="font-editorial text-7xl sm:text-9xl md:text-[11rem] lg:text-[13rem] leading-none font-bold tracking-tight text-heading will-change-transform drop-shadow-sm"
+          className="font-editorial text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-none font-bold tracking-tight text-heading will-change-transform drop-shadow-sm mb-4"
         >
           IRFAN PC
         </h1>
@@ -79,15 +74,18 @@ export default function HeroScene() {
         {/* Subtitle Identity: UI/UX DESIGNER */}
         <div 
           ref={subtitleRef}
-          className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 will-change-transform"
+          className="mt-2 sm:mt-4 flex flex-col items-center justify-center gap-4 will-change-transform"
         >
           <span className="font-display font-bold text-2xl sm:text-4xl text-forest tracking-widest uppercase">
             UI / UX DESIGNER
           </span>
-          <span className="hidden sm:inline-block w-2 h-2 rounded-full bg-sunflower" />
-          <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-muted uppercase">
-            Frontend Capability
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-sunflower/80" />
+            <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-widest text-muted uppercase">
+              FRONTEND CAPABILITY
+            </span>
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-sunflower/80" />
+          </div>
         </div>
 
         {/* Short Editorial Supporting Statement */}

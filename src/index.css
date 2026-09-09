@@ -4,9 +4,9 @@
   /* Editorial Light Naturalism Palette */
   --color-bg-base: #fbf9f4;
   --color-bg-translucent: rgba(255, 255, 255, 0.65);
-  --color-bg-glass: rgba(255, 255, 255, 0.55);
-  --color-bg-glass-hover: rgba(255, 255, 255, 0.75);
-  --color-bg-glass-card: rgba(253, 251, 246, 0.72);
+  --color-bg-glass: rgba(255, 255, 255, 0.35);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.55);
+  --color-bg-glass-card: rgba(255, 255, 255, 0.25);
   
   /* Text & Typography Colors */
   --color-text-main: #121814;

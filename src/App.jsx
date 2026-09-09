@@ -45,46 +45,48 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen text-main selection:bg-amber-400 selection:text-white font-body">
-      
+    <>
       {/* Persistent Sunflower Atmosphere Layer */}
       <PersistentBackground />
 
-      {/* Floating Light Glass Navigation */}
-      <Navbar />
-
-      {/* Main Narrative Sections */}
-      <main className="relative z-10">
+      <div className="relative min-h-screen text-main selection:bg-amber-400 selection:text-white font-body">
         
-        {/* Scene 1: Hero Opening Shot */}
-        <HeroScene />
+        {/* Floating Light Glass Navigation */}
+        <Navbar />
 
-        {/* Scene 2: Design Philosophy Intro */}
-        <StoryIntro />
+        {/* Main Narrative Sections */}
+        <main className="relative z-10">
+          
+          {/* Scene 1: Hero Opening Shot */}
+          <HeroScene />
 
-        {/* Scene 3: Flagship Case Studies */}
-        <ProjectScrollytelling onSelectProject={setSelectedProject} />
+          {/* Scene 2: Design Philosophy Intro */}
+          <StoryIntro />
 
-        {/* Scene 4: Person Behind the Pixels (About) */}
-        <AboutProcess />
+          {/* Scene 3: Flagship Case Studies */}
+          <ProjectScrollytelling onSelectProject={setSelectedProject} />
 
-        {/* Scene 5: Design & Development Arsenal (Skills) */}
-        <Skills />
+          {/* Scene 4: Person Behind the Pixels (About) */}
+          <AboutProcess />
 
-        {/* Scene 6: Design x Code Bridge */}
-        <DesignCode />
+          {/* Scene 5: Design & Development Arsenal (Skills) */}
+          <Skills />
 
-      </main>
+          {/* Scene 6: Design x Code Bridge */}
+          <DesignCode />
 
-      {/* Scene 7: Final Frame & Contact Footer */}
-      <ContactFooter />
+        </main>
 
-      {/* Deep-Dive Case Study Modal Drawer */}
-      <CaseStudyModal 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
-      />
+        {/* Scene 7: Final Frame & Contact Footer */}
+        <ContactFooter />
 
-    </div>
+        {/* Deep-Dive Case Study Modal Drawer */}
+        <CaseStudyModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+
+      </div>
+    </>
   );
 }
