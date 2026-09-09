@@ -72,21 +72,17 @@ export default function PersistentBackground() {
         {!useReducedMotion && !videoError ? (
           <video
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-[75%_80%] md:object-center"
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            poster="/assets/hero-sunflower.jpg"
             onError={() => setVideoError(true)}
           >
             <source src="/assets/hero-sunflower.webm" type="video/webm" />
             <source src="/assets/hero-sunflower.mp4" type="video/mp4" />
-            <img 
-              src="/assets/hero-sunflower.jpg" 
-              alt="Sunflower Field" 
-              className="w-full h-full object-cover"
-            />
           </video>
         ) : (
           <div 
