@@ -1,126 +1,144 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowDown, Sparkles, Compass } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroScene() {
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const statementRef = useRef(null);
-  const scrollPromptRef = useRef(null);
+  const containerRef = useRef(null);
+  const line1Ref = useRef(null);
+  const line2Ref = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Subtle scroll animation moving elements gently as user scrolls
-      const tl = gsap.timeline({
+      // Cinematic fade-out and translation as camera moves forward
+      gsap.to(containerRef.current, {
+        y: -150,
+        scale: 0.9,
+        opacity: 0,
+        ease: 'power2.inOut',
         scrollTrigger: {
           trigger: '#hero',
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.5,
+          scrub: 1,
         }
       });
 
-      tl.to(titleRef.current, {
-        y: -40,
-        opacity: 0.8,
-        ease: 'none'
+      // Stacked Sliding Text Reveal Animation
+      const tl = gsap.timeline({ delay: 0.5 });
+      
+      tl.to(line1Ref.current, {
+        y: -8,
+        duration: 0.6,
+        ease: 'power3.out'
       }, 0);
 
-      tl.to(subtitleRef.current, {
-        y: -25,
-        opacity: 0.8,
-        ease: 'none'
-      }, 0);
+      tl.fromTo(line2Ref.current, 
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'back.out(1.5)'
+        }, 0.2
+      );
 
-      tl.to(scrollPromptRef.current, {
-        opacity: 0,
-        y: 20,
-        ease: 'power1.out'
-      }, 0);
+      tl.to(line2Ref.current, {
+        backgroundPosition: '-200% center',
+        duration: 2,
+        ease: 'power2.inOut',
+        repeat: -1,
+        repeatDelay: 3
+      }, "-=0.2");
 
-    });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handleExplore = () => {
+    try {
+      const element = document.getElementById('about');
+      if (element) {
+        if (window.lenis && !window.lenis.isDestroyed) {
+          window.lenis.scrollTo(element);
+        } else {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } catch (err) {
+      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       id="hero"
-      className="relative w-full min-h-screen z-10 flex flex-col justify-between items-center px-4 sm:px-8 pt-32 pb-12 overflow-hidden select-none"
+      className="relative w-full min-h-screen z-10 flex flex-col justify-center items-center px-4 sm:px-8 overflow-hidden select-none"
     >
       
       {/* Hero Central Editorial Typography Container */}
-      <div className="relative z-10 max-w-6xl w-full mx-auto text-center flex flex-col items-center justify-center my-auto py-8 mt-12">
+      <div 
+        ref={containerRef}
+        className="relative z-10 max-w-5xl w-full mx-auto text-center flex flex-col items-center justify-center will-change-transform"
+      >
         
-        {/* Subtle Editorial Pill */}
-        <div className="mb-6 inline-flex items-center gap-2 glass-pill px-4 py-1.5 shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 text-sunflower" />
-          <span className="text-xs font-mono font-bold tracking-widest uppercase">
-            EDITORIAL PORTFOLIO — 2026
-          </span>
-        </div>
-
         {/* Primary Name Heading: IRFAN PC */}
         <h1 
-          ref={titleRef}
-          className="font-editorial text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-none font-bold tracking-tight text-heading will-change-transform drop-shadow-sm mb-4"
+          className="font-editorial flex items-center justify-center text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] leading-none font-bold tracking-tight mb-4"
         >
-          IRFAN PC
+          <span style={{ 
+            background: 'linear-gradient(#d99b1c, #d99b1c) center / 100% 75% no-repeat, linear-gradient(#d99b1c, #d99b1c) center / 85% 100% no-repeat', 
+            color: '#ffffff', 
+            padding: '0.15em 0.25em',
+            display: 'inline-block'
+          }}>IRFAN</span>
+          <span style={{ color: '#0a0f0b', marginLeft: '0.15em' }}>PC</span>
         </h1>
 
-        {/* Subtitle Identity: UI/UX DESIGNER */}
-        <div 
-          ref={subtitleRef}
-          className="mt-2 sm:mt-4 flex flex-col items-center justify-center gap-4 will-change-transform"
-        >
-          <span className="font-display font-bold text-2xl sm:text-4xl text-forest tracking-widest uppercase">
+        {/* Subtitle Identity: Stacked Animated Roles */}
+        <div className="mt-4 flex flex-col items-center justify-center relative w-full font-display uppercase font-bold text-2xl sm:text-4xl leading-tight">
+          
+          <div ref={line1Ref} className="text-white relative z-10" style={{ letterSpacing: '3px' }}>
             UI / UX DESIGNER
-          </span>
-          <div className="flex items-center gap-3">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-sunflower/80" />
-            <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-widest text-muted uppercase">
-              FRONTEND CAPABILITY
-            </span>
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-sunflower/80" />
           </div>
+          
+          <div className="overflow-hidden relative z-0 mt-2 flex items-center" style={{ padding: '4px 16px' }}>
+            <div 
+              ref={line2Ref}
+              style={{
+                letterSpacing: '3px',
+                backgroundImage: 'linear-gradient(90deg, #EAB308 0%, #F59E0B 40%, #FEF08A 50%, #F59E0B 60%, #EAB308 100%)',
+                backgroundSize: '200% auto',
+                color: 'transparent',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                textShadow: '0 0 16px rgba(234, 179, 8, 0.5)',
+              }}
+            >
+              FRONT-END DEVELOPER
+            </div>
+          </div>
+
         </div>
 
         {/* Short Editorial Supporting Statement */}
-        <p 
-          ref={statementRef}
-          className="mt-8 max-w-2xl text-base sm:text-xl text-subtle font-body font-normal leading-relaxed text-center"
-        >
+        <p className="mt-8 max-w-2xl text-xl sm:text-2xl font-editorial leading-relaxed text-center drop-shadow-md" style={{ color: '#ffffff', letterSpacing: '0.02em' }}>
           I design thoughtful digital experiences where people, visuals, and technology meet seamlessly.
         </p>
 
-        {/* Small Glass Information Card */}
-        <div className="mt-10 glass-panel px-6 py-3 border-white/80 shadow-sm inline-flex items-center gap-4 text-xs font-body text-muted">
-          <div className="flex items-center gap-2">
-            <span className="pulse-dot" />
-            <span className="font-semibold text-heading">Based in Digital Naturalism</span>
-          </div>
-          <span className="text-black/20">•</span>
-          <span>Crafting Human Interfaces</span>
-        </div>
+        {/* CTA Button */}
+        <button 
+          onClick={handleExplore}
+          className="mt-12 group inline-flex items-center gap-3 px-8 py-4 bg-white text-forest font-bold rounded-full hover:bg-sunflower hover:text-forest transition-colors shadow-xl"
+        >
+          <span>Explore my work</span>
+          <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+        </button>
 
       </div>
-
-      {/* Subtle Bottom Scroll Cue Indicator */}
-      <div 
-        ref={scrollPromptRef}
-        className="relative z-10 flex flex-col items-center gap-2 pointer-events-none pt-4"
-      >
-        <span className="text-[10px] font-mono font-bold tracking-widest text-subtle uppercase">
-          SCROLL TO EXPLORE
-        </span>
-        <div className="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-forest animate-bounce shadow-sm">
-          <ArrowDown className="w-4 h-4" />
-        </div>
-      </div>
-
     </section>
   );
 }

@@ -501,3 +501,48 @@ html, body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Navbar specific custom utility classes */
+.z-\[1000\] { z-index: 1000; }
+.z-\[1001\] { z-index: 1001; }
+.z-\[999\] { z-index: 999; }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.duration-300 { transition-duration: 300ms; }
+.duration-500 { transition-duration: 500ms; }
+.bg-white\/70 { background-color: rgba(255, 255, 255, 0.7); }
+.bg-white\/50 { background-color: rgba(255, 255, 255, 0.5); }
+.bg-white\/95 { background-color: rgba(255, 255, 255, 0.95); }
+.bg-transparent { background-color: transparent; }
+.bg-forest { background-color: var(--color-forest); }
+.bg-sunflower { background-color: var(--color-sunflower); }
+.backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.backdrop-blur-xl { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+.border-forest\/10 { border-color: rgba(30, 51, 34, 0.1); }
+.text-forest\/50 { color: rgba(30, 51, 34, 0.5); }
+.text-forest\/60 { color: rgba(30, 51, 34, 0.6); }
+.text-forest\/70 { color: rgba(30, 51, 34, 0.7); }
+.tracking-\[0\.2em\] { letter-spacing: 0.2em; }
+.mt-0\.5 { margin-top: 0.125rem; }
+.h-px { height: 1px; }
+.h-1\.5 { height: 0.375rem; }
+.w-1\.5 { width: 0.375rem; }
+.w-0 { width: 0px; }
+.opacity-100 { opacity: 1; }
+.opacity-0 { opacity: 0; }
+.group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+.group:hover .group-hover\:text-forest { color: var(--color-forest); }
+.group:hover .group-hover\:w-full { width: 100%; }
+.group:hover .group-hover\:bg-sunflower { background-color: var(--color-sunflower); }
+.group:hover .group-hover\:text-white { color: #ffffff; }
+.hover\:bg-forest:hover { background-color: var(--color-forest); }
+.hover\:border-forest:hover { border-color: var(--color-forest); }
+.hover\:text-forest\/70:hover { color: rgba(30, 51, 34, 0.7); }
+.hover\:bg-sunflower:hover { background-color: var(--color-sunflower); }
+.hover\:text-forest:hover { color: var(--color-forest); }
+.space-y-8 > * + * { margin-top: 2rem; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
